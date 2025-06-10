@@ -16,7 +16,6 @@ public class Main {
          while (true){
             ParsedCommand command=readCommand();
             handleCommand(command);
-            System.out.println(command.command+": command not found");
          }
     }
 
@@ -34,7 +33,8 @@ public class Main {
     public  static  void handleCommand(ParsedCommand parsedCommand){
         if(supportedCommands.containsKey(parsedCommand.command)){
             supportedCommands.get(parsedCommand.command).execute(parsedCommand);
+        }else {
+            System.out.println(parsedCommand.command + ": command not found");
         }
-//
     }
 }
