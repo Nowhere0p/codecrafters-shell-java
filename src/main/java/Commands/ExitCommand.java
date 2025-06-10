@@ -9,6 +9,12 @@ public class ExitCommand  implements Command{
          System.exit(statusReport.exitCode);
      }
     }
+
+    @Override
+    public void type() {
+        System.out.println("exit is a shell builtin");
+    }
+
     private StatusReport checkArgs(String[] args){
         StatusReport statusReport=new StatusReport();
         statusReport.isSuccess=false;
