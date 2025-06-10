@@ -2,7 +2,7 @@ package Commands;
 
 public interface Command {
 
-    public void execute(String[] args);
+    public void execute(ParsedCommand parsedCommand);
 }
 class StatusReport{
     public boolean isSuccess;

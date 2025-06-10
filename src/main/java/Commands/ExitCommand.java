@@ -3,8 +3,8 @@ package Commands;
 public class ExitCommand  implements Command{
 
     @Override
-    public void execute(String[] args) {
-     StatusReport statusReport= checkArgs(args);
+    public void execute(ParsedCommand parsedCommand) {
+     StatusReport statusReport= checkArgs(parsedCommand.args);
      if(statusReport.isSuccess){
          System.exit(statusReport.exitCode);
      }
