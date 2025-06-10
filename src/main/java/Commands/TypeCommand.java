@@ -13,7 +13,7 @@ public class TypeCommand implements Command  {
             if(commandMap.containsKey(command)){
                 commandMap.get(command).type();
             }else {
-                System.out.println("type: "+command+": not found");
+                System.out.println(command+": not found");
             }
         }
     }
