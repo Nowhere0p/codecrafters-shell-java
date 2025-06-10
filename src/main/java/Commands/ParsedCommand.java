@@ -1,6 +1,6 @@
 package Commands;
 
 public class ParsedCommand {
-    String line;
-    String[] parsed;
+    public String command;
+    public String[] args;
 }
