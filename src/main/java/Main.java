@@ -21,7 +21,7 @@ public class Main {
     }
 
     private static ParsedCommand readCommand() {
-        System.out.print("$");
+        System.out.print("$ ");
         Scanner scanner=new Scanner(System.in);
         String line=scanner.nextLine();
         String[] parts=line.split(" ");

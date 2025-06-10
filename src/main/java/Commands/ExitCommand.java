@@ -1,8 +1,5 @@
 package Commands;
 
-import Exceptions.NumericArgumentRequiredException;
-import Exceptions.TooManyArgumentsException;
-
 public class ExitCommand  implements Command{
 
     @Override
