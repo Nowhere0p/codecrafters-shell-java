@@ -11,7 +11,7 @@ public static List<String> checkCommandInPath(String arg){
     for(String dir: paths) {
         File executable = new File(dir, arg);
         if (executable.exists() && executable.canExecute()) {
-            locations.add(dir);
+            locations.add(executable.getAbsolutePath());
         }
     }
         return  locations;
