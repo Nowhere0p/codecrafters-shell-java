@@ -18,7 +18,9 @@ public class TypeCommand implements Command  {
             if(commandMap.containsKey(command)){
                 commandMap.get(command).type();
             }else {
-                System.out.println(command+": not found");
+                if(!checkInPath(parsedCommand.args.getFirst())) {
+                    System.out.println(command + ": not found");
+                }
             }
         }
     }
