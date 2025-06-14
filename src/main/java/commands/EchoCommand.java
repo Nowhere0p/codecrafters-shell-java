@@ -1,11 +1,11 @@
-package Commands;
+package commands;
 
-import java.util.Arrays;
+import parser.ParsedCommand;
 
 public class EchoCommand implements  Command {
     @Override
     public void execute(ParsedCommand parsedCommand) {
-        if(parsedCommand.args.length==0){
+        if(parsedCommand.args.isEmpty()){
             System.out.println();
         }
         else{

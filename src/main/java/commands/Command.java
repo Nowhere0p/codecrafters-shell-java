@@ -1,4 +1,6 @@
-package Commands;
+package commands;
+
+import parser.ParsedCommand;
 
 public interface Command {
 

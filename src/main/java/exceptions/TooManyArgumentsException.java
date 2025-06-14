@@ -1,4 +1,4 @@
-package Exceptions;
+package exceptions;
 
 public class TooManyArgumentsException extends RuntimeException {
     public TooManyArgumentsException(String message) {

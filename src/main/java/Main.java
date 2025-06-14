@@ -1,4 +1,5 @@
-import Commands.*;
+import commands.*;
+import server.ShellServer;
 
 import java.util.Arrays;
 import java.util.HashMap;
@@ -6,34 +7,12 @@ import java.util.Map;
 import java.util.Scanner;
 
 public class Main {
-        private static Map<String, Command> supportedCommands;
+        private static Map<String, Command> commands;
     public static void main(String[] args) throws Exception {
-        supportedCommands=new HashMap<>();
-        supportedCommands.put("exit",new ExitCommand());
-        supportedCommands.put("echo",new EchoCommand());
-        supportedCommands.put("type",new TypeCommand(supportedCommands));
-         while (true){
-            ParsedCommand command=readCommand();
-            handleCommand(command);
-         }
-    }
-
-    private static ParsedCommand readCommand() {
-        System.out.print("$ ");
-        Scanner scanner=new Scanner(System.in);
-        String line=scanner.nextLine();
-        String[] parts=line.split(" ");
-        ParsedCommand parsedCommand=new ParsedCommand();
-        parsedCommand.command=parts[0];
-        parsedCommand.args= Arrays.copyOfRange(parts,1,parts.length);
-        return parsedCommand;
-    }
-
-    public  static  void handleCommand(ParsedCommand parsedCommand){
-        if(supportedCommands.containsKey(parsedCommand.command)){
-            supportedCommands.get(parsedCommand.command).execute(parsedCommand);
-        }else {
-            System.out.println(parsedCommand.command + ": command not found");
-        }
+        commands=new HashMap<>();
+        commands.put("exit",new ExitCommand());
+        commands.put("echo",new EchoCommand());
+        commands.put("type",new TypeCommand(commands));
+        ShellServer.start(commands);
     }
 }
