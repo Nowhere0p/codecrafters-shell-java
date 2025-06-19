@@ -15,7 +15,7 @@ public class CdCommand implements Command{
        if(file.exists()){
         var newPath=ShellServer.currentPath.resolve(parsedCommand.args.get(0)).normalize();
         if(newPath.toFile().exists()){
-            ShellServer.currentPath=newPath;
+            ShellServer.currentPath=newPath.toAbsolutePath();
         }
        }
        else{
