@@ -5,10 +5,13 @@ package server;
 import commands.Command;
 import parser.ParsedCommand;
 
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.Map;
 import java.util.Scanner;
 
 public class ShellServer {
+    public static Path currentPath=Paths.get("");
     public static void start(Map<String, Command> commands){
         while (true){
             System.out.print("$ ");

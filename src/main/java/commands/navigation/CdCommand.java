@@ -5,6 +5,7 @@ import java.io.File;
 
 import commands.Command;
 import parser.ParsedCommand;
+import server.ShellServer;
 
 public class CdCommand implements Command{
     
@@ -12,7 +13,10 @@ public class CdCommand implements Command{
     public void execute(ParsedCommand parsedCommand) {
        File file= new File(parsedCommand.args.get(0));
        if(file.exists()){
-        System.setProperty("user.dir", parsedCommand.args.get(0));
+        var newPath=ShellServer.currentPath.resolve(parsedCommand.args.get(0)).toAbsolutePath();
+        if(newPath.toFile().exists()){
+            ShellServer.currentPath=newPath;
+        }
        }
        else{
         System.out.println(parsedCommand.command+": "+parsedCommand.args.get(0)+": No such file or directory");
