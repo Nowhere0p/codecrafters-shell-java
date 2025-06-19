@@ -12,7 +12,7 @@ public class Main {
         commands.put("echo",new EchoCommand());
         commands.put("type",new TypeCommand(commands));
         commands.put("pwd", new PwdCommand());
-        commands.put("pwd", new CdCommand());
+        commands.put("cd", new CdCommand());
         ShellServer.start(commands);
     }
 }
