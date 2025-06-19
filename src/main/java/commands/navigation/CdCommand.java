@@ -13,7 +13,7 @@ public class CdCommand implements Command{
     public void execute(ParsedCommand parsedCommand) {
        File file= new File(parsedCommand.args.get(0));
        if(file.exists()){
-        var newPath=ShellServer.currentPath.resolve(parsedCommand.args.get(0)).toAbsolutePath();
+        var newPath=ShellServer.currentPath.resolve(parsedCommand.args.get(0)).normalize();
         if(newPath.toFile().exists()){
             ShellServer.currentPath=newPath;
         }
