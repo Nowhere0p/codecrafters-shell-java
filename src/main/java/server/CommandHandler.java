@@ -26,7 +26,7 @@ public class CommandHandler {
             }
             catch(IOException | InterruptedException e){
                 e.printStackTrace();
-                throw new RuntimeException(e);
+                // throw new RuntimeException(e);
             }
 
         }
