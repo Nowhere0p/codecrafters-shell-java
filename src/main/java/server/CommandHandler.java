@@ -17,7 +17,7 @@ public class CommandHandler {
             List<String> commandLocations = CommandUtils.checkCommandInPath(parsedCommand.command);
             if(commandLocations.isEmpty()){
                 System.out.println(parsedCommand.command + ": command not found");
-            } 
+            }else{
             try{
                 var statusCode=runExecutable(parsedCommand,commandLocations);
                 if(statusCode!=0){
@@ -25,10 +25,10 @@ public class CommandHandler {
                 }
             }
             catch(IOException | InterruptedException e){
-                System.out.println("ehllo");
                 e.printStackTrace();
-                // throw new RuntimeException(e);
+                throw new RuntimeException(e);
             }
+        }
 
         }
     }
@@ -40,6 +40,7 @@ public class CommandHandler {
         var executable=commandLocations.getFirst();
         File executabFile=new File(executable);
         if(!executabFile.exists() ||!executabFile.canExecute()){
+            System.out.println(parsedCommand.command+": is not executable");
            return 1;
         }
         ProcessBuilder builder=new ProcessBuilder(executabFile.getName());
