@@ -13,6 +13,7 @@ public class Main {
         commands.put("exit",new ExitCommand());
         commands.put("echo",new EchoCommand());
         commands.put("type",new TypeCommand(commands));
+        commands.put("pwd", new PwdCommand());
         ShellServer.start(commands);
     }
 }
