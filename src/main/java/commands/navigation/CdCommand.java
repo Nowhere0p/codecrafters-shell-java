@@ -13,7 +13,7 @@ public class CdCommand implements Command{
 public void execute(ParsedCommand parsedCommand) {
     String target;
     if (parsedCommand.args.isEmpty() || parsedCommand.args.get(0).equals("~")){
-        target = System.getProperty("user.home");
+        target = System.getProperty("user.dir");
     } else {
         target = parsedCommand.args.get(0);
     }
