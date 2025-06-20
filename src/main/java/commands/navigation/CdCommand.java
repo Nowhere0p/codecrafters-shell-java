@@ -12,7 +12,7 @@ public class CdCommand implements Command{
   @Override
 public void execute(ParsedCommand parsedCommand) {
     String target;
-    if (parsedCommand.args.isEmpty() || parsedCommand.args.get(0).equals("~")) {
+    if (parsedCommand.args.isEmpty() || parsedCommand.args.get(0).equals("~")){
         target = System.getProperty("user.home");
     } else {
         target = parsedCommand.args.get(0);
@@ -33,5 +33,4 @@ public void execute(ParsedCommand parsedCommand) {
     public void type() {
       System.out.println("cd is a shell builtin");
     }
-    
 }
