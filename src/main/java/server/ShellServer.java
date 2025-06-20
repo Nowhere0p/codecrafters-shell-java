@@ -11,7 +11,7 @@ import java.util.Map;
 import java.util.Scanner;
 
 public class ShellServer {
-    public static Path currentPath=Paths.get("");
+    public static Path currentPath=Paths.get("").toAbsolutePath();
     public static void start(Map<String, Command> commands){
         while (true){
             System.out.print("$ ");
