@@ -1,32 +1,30 @@
 [![progress-banner](https://backend.codecrafters.io/progress/shell/260e140b-75eb-4751-98dc-4d5da93dcdc5)](https://app.codecrafters.io/users/Nowhere0p?r=2qF)
 
-This is a starting point for Java solutions to the
-["Build Your Own Shell" Challenge](https://app.codecrafters.io/courses/shell/overview).
+# My Shell Implementation in Java
 
-In this challenge, you'll build your own POSIX compliant shell that's capable of
-interpreting shell commands, running external programs and builtin commands like
-cd, pwd, echo and more. Along the way, you'll learn about shell command parsing,
-REPLs, builtin commands, and more.
+This repo contains my solution to the "Build Your Own Shell" challenge from Codecrafters, where the goal is to build a custom POSIX-compliant shell in Java. Along the way, I'll implement essential shell features like parsing commands, running external programs, and creating built-in commands (such as `cd`, `pwd`, `echo`, etc.).
 
-**Note**: If you're viewing this repo on GitHub, head over to
-[codecrafters.io](https://codecrafters.io) to try the challenge.
+---
 
-# Passing the first stage
+## Challenge Overview
 
-The entry point for your `shell` implementation is in `src/main/java/Main.java`.
-Study and uncomment the relevant code, and push your changes to pass the first
-stage:
+The challenge requires building a functional shell from scratch. You’ll write your own command interpreter, manage process execution, handle built-in commands, and create an interactive shell loop. It’s a great way to learn more about how shells work under the hood.
 
-```sh
-git commit -am "pass 1st stage" # any msg
-git push origin master
-```
+- **Stage 1**: Basic setup, just get the shell running.
+- **Stage 2**: Add built-in commands like `cd`, `pwd`, `echo`, and more.
+- **Later Stages**: Implement external command execution, handle arguments, process management, and error handling.
 
-Time to move on to the next stage!
+I’ll be documenting my progress and pushing the changes as I move through each stage.
 
-# Stage 2 & beyond
+---
 
-Note: This section is for stages 2 and beyond.
+## Getting Started
+
+1. Clone the repository to your local machine:
+
+   ```bash
+   git clone https://github.com/Nowhere0p/codecrafters-shell-java.git
+   cd codecrafters-shell-java
 
 1. Ensure you have `mvn` installed locally
 1. Run `./your_program.sh` to run your program, which is implemented in
