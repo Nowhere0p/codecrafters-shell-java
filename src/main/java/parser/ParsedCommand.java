@@ -8,7 +8,7 @@ public class ParsedCommand {
     public Map<Integer, String> outputRedirections = new HashMap<>();
 
     public static ParsedCommand fromLine(String line) {
-        String[] parts = line.trim().split(" ");  // can use "\\s+" represents space only
+        String[] parts = line.trim().split(" ");  // can use "\\s+" represents space 
         ParsedCommand parsedCommand = new ParsedCommand();
         List<String> argsList = new ArrayList<>();
         int i = 0;
