@@ -66,7 +66,7 @@ public class CommandHandler {
                 if (parentDir != null && !Files.exists(parentDir)) {
                     Files.createDirectories(parentDir);
                 }
-                if (Files.exists(logPath)) {
+                if (Files.exists(logPath))  { 
                     Files.delete(logPath);
                 }
                 Files.createFile(logPath);
