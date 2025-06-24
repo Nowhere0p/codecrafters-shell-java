@@ -60,7 +60,7 @@ public class CommandHandler {
     
         public static ParsedCommand handleRedirection(ParsedCommand input) throws IOException {
             if (!input.outputRedirections.isEmpty()) {
-                String outputPathStr = input.outputRedirections.getOrDefault("1", input.outputRedirections.get(0));
+                String outputPathStr = input.outputRedirections.getOrDefault(1, input.outputRedirections.get(0));
                 Path logPath = Paths.get(outputPathStr);
                 Path parentDir = logPath.getParent();
                 if (parentDir != null && !Files.exists(parentDir)) {
