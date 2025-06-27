@@ -39,9 +39,6 @@ public class CommandHandler {
     }
 
     private static int runExecutable(ParsedCommand parsedCommand, List<String> commandLocations) throws IOException,InterruptedException {
-      if(commandLocations.size()>1){
-        System.out.println("Multiple executables found");
-      }
         var executable=commandLocations.getFirst();
         File executabFile=new File(executable);
         if(!executabFile.exists() ||!executabFile.canExecute()){
