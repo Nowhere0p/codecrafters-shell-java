@@ -39,6 +39,7 @@ public class CommandHandler {
     }
 
     private static int runExecutable(ParsedCommand parsedCommand, List<String> commandLocations) throws IOException,InterruptedException {
+
         var executable=commandLocations.getFirst();
         File executabFile=new File(executable);
         if(!executabFile.exists() ||!executabFile.canExecute()){
@@ -57,20 +58,39 @@ public class CommandHandler {
     
         public static ParsedCommand handleRedirection(ParsedCommand input) throws IOException {
             if (!input.outputRedirections.isEmpty()) {
-                String outputPathStr = input.outputRedirections.getOrDefault(1, input.outputRedirections.get(0));
+                int fd = input.outputRedirections.keySet().iterator().next();
+                String outputPathStr=input.outputRedirections.get(fd).path;
                 Path logPath = Paths.get(outputPathStr);
                 Path parentDir = logPath.getParent();
                 if (parentDir != null && !Files.exists(parentDir)) {
                     Files.createDirectories(parentDir);
                 }
                 if (Files.exists(logPath))  { 
+                  if(!input.outputRedirections.get(fd).toAppend){
                     Files.delete(logPath);
                 }
+                }
+                else{
                 Files.createFile(logPath);
-                System.setOut(new PrintStream(Files.newOutputStream(logPath)));
+                }
+                setStream(fd,logPath);
+                
                 return input;
-            } else {
+            } 
+            else {
                 return input;
+            }
+        }
+        private static void setStream(int fd,Path path) throws IOException{
+            switch (fd) {
+                case 1: 
+                    System.setOut(new PrintStream(Files.newOutputStream(path)));
+                    break;
+                case 2:
+                    System.setErr(new PrintStream(Files.newOutputStream(path)));
+                    break;
+                default:
+                    break;
             }
         }
 }
