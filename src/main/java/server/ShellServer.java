@@ -20,6 +20,7 @@ public class ShellServer {
        final PrintStream stdout=System.out;
        final PrintStream strerr=System.err;
         while (true){
+            System.out.println("hello");
             System.out.print("$ ");
             Scanner sc=new Scanner(System.in);
             String line=sc.nextLine();
