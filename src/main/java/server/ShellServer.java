@@ -18,8 +18,10 @@ public class ShellServer {
     public static void start(Map<String, Command> commands){
         try{
        final PrintStream stdout=System.out;
+       final PrintStream strerr=System.err;
         while (true){
             System.setOut(stdout);
+            System.setErr(strerr);
             System.out.print("$ ");
             Scanner sc=new Scanner(System.in);
             String line=sc.nextLine();

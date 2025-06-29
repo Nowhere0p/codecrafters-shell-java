@@ -5,11 +5,10 @@ import parser.ParsedCommand;
 import util.CommandUtils;
 
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.PrintStream;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
+
 import java.util.*;
 
 public class CommandHandler {
@@ -39,6 +38,7 @@ public class CommandHandler {
     }
 
     private static int runExecutable(ParsedCommand parsedCommand, List<String> commandLocations) throws IOException,InterruptedException {
+
         var executable=commandLocations.getFirst();
         File executabFile=new File(executable);
         if(!executabFile.exists() ||!executabFile.canExecute()){
@@ -56,21 +56,33 @@ public class CommandHandler {
     }
     
         public static ParsedCommand handleRedirection(ParsedCommand input) throws IOException {
-            if (!input.outputRedirections.isEmpty()) {
-                String outputPathStr = input.outputRedirections.getOrDefault(1, input.outputRedirections.get(0));
-                Path logPath = Paths.get(outputPathStr);
-                Path parentDir = logPath.getParent();
-                if (parentDir != null && !Files.exists(parentDir)) {
-                    Files.createDirectories(parentDir);
-                }
-                if (Files.exists(logPath))  { 
-                    Files.delete(logPath);
-                }
-                Files.createFile(logPath);
-                System.setOut(new PrintStream(Files.newOutputStream(logPath)));
-                return input;
-            } else {
+            List<String> tokens = input.args;
+            Set<String> redirectionOperators = Set.of(">", ">>", "1>", "1>>", "2>", "2>>");
+            if (tokens.size() < 2 || !redirectionOperators.contains(tokens.get(tokens.size() - 2))) {
                 return input;
             }
+            String operator = tokens.get(tokens.size() - 2);
+            if (redirectionOperators.contains(operator)) {
+                File logFile = new File(tokens.get(tokens.size() - 1));
+                File path = logFile.getParentFile();
+                if (path != null && !path.exists()) {
+                    path.mkdirs();
+                }
+                if (!logFile.exists()) {
+                    logFile.createNewFile();
+                }
+                boolean append = operator.endsWith(">>");
+                FileOutputStream fileOutputStream = new FileOutputStream(logFile, append);
+                if (operator.startsWith("2")) {
+                    System.setErr(new PrintStream(fileOutputStream, true));
+                } else if (operator.startsWith("1")) {
+                    System.setOut(new PrintStream(fileOutputStream, true));
+                } else if (operator.equals(">") || operator.equals(">>")) {
+                    System.setOut(new PrintStream(fileOutputStream, true));
+                }
+                List<String> newArgs = new ArrayList<>(tokens.subList(0, tokens.size() - 2));
+                input.args = newArgs;
+            }
+            return input;
         }
-}
+    }
