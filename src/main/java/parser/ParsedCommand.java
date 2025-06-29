@@ -19,6 +19,7 @@ public class ParsedCommand {
 
     public static ParsedCommand fromLine(String line) {
      if(line.isEmpty() || line==null) return new ParsedCommand();
+     if(line.isEmpty() || line==null) return new ParsedCommand();
      boolean inQuotes=false;
      List<String> tokens=new ArrayList<>();
      StringBuilder sb=new StringBuilder();  //   for processing too much string values
