@@ -15,10 +15,11 @@ import java.util.Scanner;
 
 public class ShellServer {
     public static Path currentPath=Paths.get("").toAbsolutePath();
+     public static  PrintStream stdout=System.out;   
+    public static PrintStream strerr=System.err;
+
     public static void start(Map<String, Command> commands){
         try{
-       final PrintStream stdout=System.out;
-       final PrintStream strerr=System.err;
         while (true){
             System.out.print("$ ");
             Scanner sc=new Scanner(System.in);
@@ -32,7 +33,6 @@ public class ShellServer {
            }
             System.setOut(stdout);
             System.setErr(strerr);
-            System.out.println("hello");
         }
     }catch(RuntimeException rex){
         System.out.println("failed to start server");
