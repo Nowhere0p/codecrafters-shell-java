@@ -21,9 +21,9 @@ public class CommandHandler {
             }else{
             try{
                 var statusCode=runExecutable(parsedCommand,commandLocations);
-                if(statusCode!=0){
-                    System.out.println(parsedCommand.command+": command failed");
-                }
+                // if(statusCode!=0){
+                //     System.out.println(parsedCommand.command+": command failed");
+                // }
             }
             catch(IOException | InterruptedException e){
                 e.printStackTrace();
