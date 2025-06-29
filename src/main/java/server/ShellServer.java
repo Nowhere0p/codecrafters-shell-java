@@ -20,8 +20,6 @@ public class ShellServer {
        final PrintStream stdout=System.out;
        final PrintStream strerr=System.err;
         while (true){
-            System.setOut(stdout);
-            System.setErr(strerr);
             System.out.print("$ ");
             Scanner sc=new Scanner(System.in);
             String line=sc.nextLine();
@@ -32,6 +30,8 @@ public class ShellServer {
             ex.getLocalizedMessage();
             sc.close();
            }
+            System.setOut(stdout);
+            System.setErr(strerr);
         }
     }catch(RuntimeException rex){
         System.out.println("failed to start server");
